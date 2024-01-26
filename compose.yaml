@@ -8,6 +8,7 @@ services:
       AWS_SECRET_ACCESS_KEY: "route53-test"
       AWS_DEFAULT_REGION: "ap-northeast-1"
       AWS_ENDPOINT_URL: "http://route53:4566"
+    command: bash -c "cd /src && bundle install && ruby powerdns.rb"
   awscli:
     image: public.ecr.aws/aws-cli/aws-cli:2.15.14
     environment:
