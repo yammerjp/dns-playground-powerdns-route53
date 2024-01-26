@@ -1,0 +1,26 @@
+services:
+  ruby:
+    image: rubylang/ruby
+    volumes:
+      - ./src:/src
+    environment:
+      AWS_ACCESS_KEY_ID: "route53-test"
+      AWS_SECRET_ACCESS_KEY: "route53-test"
+      AWS_DEFAULT_REGION: "ap-northeast-1"
+      AWS_ENDPOINT_URL: "http://route53:4566"
+  awscli:
+    image: public.ecr.aws/aws-cli/aws-cli:2.15.14
+    environment:
+      AWS_ACCESS_KEY_ID: "route53-test"
+      AWS_SECRET_ACCESS_KEY: "route53-test"
+      AWS_DEFAULT_REGION: "ap-northeast-1"
+      AWS_ENDPOINT_URL: "http://route53:4566"
+  route53:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+    environment:
+      SERVICES: 'route53'
+      AWS_ACCESS_KEY_ID: "route53-test"
+      AWS_SECRET_ACCESS_KEY: "route53-test"
+      AWS_DEFAULT_REGION: "ap-northeast-1"
