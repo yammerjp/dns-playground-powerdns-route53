@@ -24,3 +24,10 @@ services:
       AWS_ACCESS_KEY_ID: "route53-test"
       AWS_SECRET_ACCESS_KEY: "route53-test"
       AWS_DEFAULT_REGION: "ap-northeast-1"
+  powerdns:
+    build:
+      context: ./docker/powerdns/
+    ports:
+      - "8081:8081"
+      - "10053:53/tcp"
+      - "10053:53/udp"
